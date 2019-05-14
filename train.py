@@ -1,3 +1,4 @@
+import random
 import glob
 import pickle
 from nltk.tokenize import word_tokenize
@@ -21,7 +22,7 @@ print(len(code))
 print(len(notcode))
 
 
-train = code[:50]+notcode[:50]
+train = random.sample(code, 500)+random.sample(notcode, 500)
 print(len(train))
 
 all_words = set(word.lower() for passage in train for word in word_tokenize(passage[0]))
@@ -32,8 +33,8 @@ print("done tokenizing")
 classifier = NaiveBayesClassifier.train(t)
 classifier.show_most_informative_features()
 
-with open('pickled_models/tokens_{0}.pickle'.format(len(train)), 'wb') as f:
+with open('/code/pickled_models/tokens_{0}.pickle'.format(len(train)), 'wb') as f:
     pickle.dump(all_words, f)
 
-with open('pickled_models/NaiveBayesClassifier_{0}.pickle'.format(len(train)), 'wb') as f:
+with open('/code/pickled_models/NaiveBayesClassifier_{0}.pickle'.format(len(train)), 'wb') as f:
     pickle.dump(classifier, f)

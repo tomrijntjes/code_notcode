@@ -3,6 +3,7 @@ Ever wanted to parse your developer logbook but wanted to separate code from you
 Bayesian classifier. Pretrained on Python code and SQL.
 
 docker run --rm -v $(pwd):/code -it nltk bash
+docker run --rm -v $(pwd)/pickled_models:/code/pickled_models -v $(pwd)/landing:/landing nltk
 
 prototype TODO:
 create docker environment with nltk installed ✓
